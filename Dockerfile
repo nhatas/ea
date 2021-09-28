@@ -45,5 +45,13 @@ RUN conda install mamba -n base -c conda-forge && \
 COPY /entrypoint.sh /opt/conda/bin/entrypoint.sh
 RUN chmod a+x /opt/conda/bin/entrypoint.sh
 
+# gatk4 example
+WORKDIR /app
+RUN wget https://github.com/broadinstitute/gatk/releases/download/4.2.2.0/gatk-4.2.2.0.zip
+RUN unzip gatk-4.2.2.0.zip
+# lives at /app/gatk-4.2.2.0
+# after adding to path
+# picard.jar should be in PATH
+
 #ENTRYPOINT ["/opt/conda/bin/entrypoint.sh"]
 CMD [".", "/opt/conda/bin/entrypoint.sh"]
